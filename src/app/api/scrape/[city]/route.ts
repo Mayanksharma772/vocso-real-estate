@@ -5,9 +5,9 @@ import { Project } from '@/types';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { city: string } }
+  { params }: { params: Promise<{ city: string }> }
 ) {
-  const { city } = params;
+  const { city } = await params;
 
   if (!city) {
     return NextResponse.json(
@@ -40,7 +40,7 @@ export async function GET(
       projects.map(async (project) => {
         const coordinates = await geocodingService.geocodeLocation(
           `${project.location}, ${city}, India`
-        );
+        );
 
         return {
           ...project,
@@ -76,9 +76,9 @@ export async function GET(
 // For real-time updates via polling
 export async function POST(
   request: NextRequest,
-  { params }: { params: { city: string } }
+  { params }: { params: Promise<{ city: string }> }
 ) {
-  const { city } = params;
+  const { city } = await params;
   const { offset = 0, limit = 5 } = await request.json();
 
   let scraper: MagicBricksScraper | null = null;
@@ -130,6 +130,6 @@ export async function POST(
   } finally {
     if (scraper) {
       await scraper.close();
-    }
-  }
+    }
+  }
 }

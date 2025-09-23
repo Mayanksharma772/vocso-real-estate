@@ -6,6 +6,7 @@ import 'leaflet/dist/leaflet.css';
 import { Project } from '@/types';
 
 // Fix for default markers in Next.js
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 delete (L.Icon.Default.prototype as any)._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
@@ -18,7 +19,7 @@ interface MapComponentProps {
   city: string;
 }
 
-const MapComponent: React.FC<MapComponentProps> = ({ projects, city }) => {
+const MapComponent: React.FC<MapComponentProps> = ({ projects }) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
   const markersRef = useRef<L.Marker[]>([]);

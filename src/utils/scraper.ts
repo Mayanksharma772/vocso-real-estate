@@ -1,11 +1,15 @@
 import { Project } from '@/types';
 
 // Dynamic imports to avoid webpack bundling issues
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let puppeteer: any = null;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let StealthPlugin: any = null;
 
 export class MagicBricksScraper {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private browser: any = null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private page: any = null;
 
   async init() {
@@ -66,7 +70,7 @@ export class MagicBricksScraper {
         const projectElements = document.querySelectorAll(
           '.mb-srp__card, .projectTuple, .project-card, [data-testid="project-card"]'
         );
-
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const projects: any[] = [];
 
         projectElements.forEach((element: Element, index: number) => {
@@ -120,7 +124,7 @@ export class MagicBricksScraper {
           const cardElements = document.querySelectorAll(
             'div[class*="card"], div[class*="project"], div[class*="property"], .listing'
           );
-
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const projects: any[] = [];
           const maxProjects = 20; // Limit to avoid too many results
 
