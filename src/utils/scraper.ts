@@ -63,7 +63,7 @@ export class MagicBricksScraper {
       });
 
       // Wait for content to load
-      await this.page.waitForTimeout(3000);
+      await new Promise(resolve => setTimeout(resolve, 3000));
 
       // Try different selectors based on MagicBricks structure
       const projects = await this.page.evaluate(() => {
